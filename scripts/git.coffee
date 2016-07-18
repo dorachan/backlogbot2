@@ -17,8 +17,8 @@ module.exports = (body = {}, query = {}) ->
     for revision in body.content.revisions
       url = "##{config.setting.backlog_url}git/#{body.project?.projectKey}/#{body.content?.repository.name}/commit/#{revision.rev}"
       fields.push(
-        title: "rev"
-        value: "#{revision.rev}"
+        title: "#rev"
+        value: "#{url}"
       )
       fields.push(
         title: "コメント"
