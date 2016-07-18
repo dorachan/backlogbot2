@@ -5,12 +5,25 @@ module.exports = (body = {}, query = {}) ->
   fields = []
   color = query?.good_color || config.setting.good_color
 
-  # コメント
-  if body.content?.comment? && body.content.comment.trim() != ""
+  # revision
+  if body.content?.revision_type
     fields.push(
-      title: "コメント"
-      value: "#{body.content.comment}"
+      title: "revision_type"
+      value: "#{body.content.revision_type}"
     )
+
+  # commit
+  if body.content?.revisions?
+    for revision in body.content.revisions
+      url = "##{config.setting.backlog_url}git/#{body.project?.projectKey}/#{body.content?.repository.name}/commit/#{revision.rev}"
+      fields.push(
+        title: "rev"
+        value: "#{revision.rev}"
+      )
+      fields.push(
+        title: "コメント"
+        value: "#{revision.comment}"
+      )
 
   # メッセージ整形
   msg =
