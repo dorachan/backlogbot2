@@ -50,7 +50,7 @@ module.exports = (robot) ->
           svn = require './svn'
           msg = svn(body, query)
         when 12
-          svn = require './git'
+          git = require './git'
           msg = git(body, query)
         else
           simple = require './simple'
