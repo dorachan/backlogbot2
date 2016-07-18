@@ -19,6 +19,6 @@ module.exports = (body = {}, query = {}) ->
     content:
       fallback: "#{config.type[body.type]}: by #{body.createdUser?.name}"
       color: color
-      title: "リビジョン： #{body.content?.rev}"
-      title_link: "#{config.setting.backlog_url}rev/#{body.project?.projectKey}/#{body.content?.rev}"
+      title: "リポジトリ: {body.content?.repository.name}"
+      title_link: "#{config.setting.backlog_url}git/#{body.project?.projectKey}/#{body.content?.repository.name}"
       fields: fields
